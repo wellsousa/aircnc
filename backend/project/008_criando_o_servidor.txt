@@ -1,0 +1,35 @@
+
+//fazendo o import da biblioteca express
+
+const express = require('express');
+
+//chamada da função que instancia o servidor.
+
+const app = express();
+
+/*
+    app.get trata requsições do tipo get. Recebe como parametro uma rota e uma função
+    com os parametros "req" e "res" onde "req" são os dados que usuario envia para o servidor
+    e "res" são os dados que o servidor envia como resposta para a resição get que ele tratou.
+    A função no exemplo abaixo foi definida como arrowfunction mas poderia ser uma função normal
+    como mostrado abaixo:
+
+    app.get('/home', function(req, res){
+
+    });
+*/
+    app.get('/',(req, res)=>{
+        /*
+            enviando uma resposta em formato TEXTO parao usuario com a mensagem 'hello world'
+            Para devolver uma respota você precisa usar o comando 'return'
+        */
+        return resp.send('Hello World!');
+    });
+
+
+/*
+    A porta onde você deseja executar a aplicação
+    Para acessar a aplicação localmente basta digitar localhost:8000/
+*/
+
+app.listen(8000);

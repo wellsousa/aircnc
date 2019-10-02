@@ -1,0 +1,16 @@
+
+Você pode criar uma pasta pelo terminal com o comando:
+
+mkdir [nome-da-pasta]
+
+Esse projeto se divide em front-end e backend. Nesse caso, crie uma pasta
+chamada "backend" e então inicie o o projeto dentro da pasta backend:
+
+yarn init -y
+
+OU 
+
+npm init 
+
+Então será criado um arquivo "package.json". Esse arquivo conterá todas
+as dependencias desse projeto.

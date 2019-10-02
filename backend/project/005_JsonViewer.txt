@@ -1,0 +1,6 @@
+JSON VIEW
+
+É uma extensão que você pode instalar no chrome para ver conteúdos de objetos
+JSON.
+
+Para instalar basta você acessar a ChromeWebStore.

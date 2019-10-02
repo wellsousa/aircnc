@@ -1,0 +1,4 @@
+
+
+CTRL + SHIFT + P ==> Abre a lista de preferências do vscode.
+

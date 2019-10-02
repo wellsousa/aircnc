@@ -1,0 +1,10 @@
+API REST
+
+Basicamente, é uma maneira de separar completamente o backend do frontend, ou seja,
+o backend não terá códigos de geração de interface( ou front-end) integradas.
+
+Em uma API rest nunca se devolve uma resposta em formato texto. Normalmente, se
+devolve uma estrura de dados onde tanto o backend quanto o frontend são capazes 
+de interpretar essas informações, por exemplo com o JSON(Javascript Object Notation).
+E então, o backend é responsável por enviar esses dados e o front-end os recebe e mostra
+para o usuário.

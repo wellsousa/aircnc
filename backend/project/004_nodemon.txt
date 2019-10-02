@@ -1,0 +1,53 @@
+
+Normalmente, se você fizer uma alteração no código em node e quiser visualizar no
+navegador você deve parar o servidor e rodá-lo novamente.
+
+NODEMON
+
+È uma biblioteca que permite que o node atualize automaticamente todas as alterações
+feitas no código.
+
+Para instalar essa biblioteca você deve executar o seguinte comando
+
+yarn add nodemon -D
+
+A flag -D informa que essa depedência estará disponivel apenas enquanto o projeto
+estiver em desenvolvimento. Em produção a dependência não será adicionada.
+Essa dependência será adicionada na seção de devDependencies dentro do arquivo package.json.
+
+CONFIGURAÇÃO DO NODEMON
+
+dentro do arquivo package.json abaixo do item "license" adicione o seguinte:
+
+  "scripts": {
+    "dev": "nodemon src/server.js"
+  },
+
+  Ficará assim, por exemplo:
+
+  {
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.3"
+  }
+}
+
+A partir daí você pode usar o comando
+
+yarn dev 
+
+OU 
+
+npm run dev
+
+As alterações feitas ficarão sendo ouvidas e alteradas sem a necessidade
+de reestartar o servidor.

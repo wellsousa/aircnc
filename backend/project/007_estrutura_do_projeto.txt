@@ -1,0 +1,11 @@
+
+Nâo existe regra para a esturação de um projeto. Mas, é importante manter os arquivos bem
+organizados e não misturar o  código que você escreve com as bibliotecas padrões e arquivos
+de configuração, por isso, nesse projeto vamos criar um diretório chamado 'src' que é uma
+abreviação para 'source'. 
+
+Dentro desse diretório guardaremos todos os códigos e podemos criar novos subdiretórios para
+cada conjunto especifico de arquivos.
+
+O arquivo de inicialização do servidor será o 'server.js' que fará uso também
+da biblioteca 'express'.
