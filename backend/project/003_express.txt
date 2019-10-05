@@ -2,7 +2,9 @@
 EXPRESS
 
 A biblioteca express torna mais simples a criação de um
-servidor no node.js.
+servidor no node.js. Pode ser considerado como um pequeno 
+framework. Basicamente, ele gerencia a criação do servidor, gerencia
+o fluxo de rotas e executa a aplicação em uma porta.
 
 Para instalar a biblioteca você pode digitar o comando:
 

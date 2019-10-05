@@ -17,7 +17,7 @@ app.get('/', function(req, res){
 req - são os dados que o cliente envia para o servidor
 res - é a resposta que o servidor envia para o cliente
 */
-app.get('/', (req, res) => {
+app.post('/', (req, res) => {
     return res.json({ message: 'Hello World!'});
 });
 

@@ -8,3 +8,5 @@ devolve uma estrura de dados onde tanto o backend quanto o frontend são capazes
 de interpretar essas informações, por exemplo com o JSON(Javascript Object Notation).
 E então, o backend é responsável por enviar esses dados e o front-end os recebe e mostra
 para o usuário.
+
+Os metodos mais importantes para uma API rest são GET, POST, PUT, DELETE.
