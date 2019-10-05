@@ -1,6 +1,8 @@
 
 const express = require('express');
 const mongoose = require('mongoose');
+const SessionController = require('./Controllers/SessionController');
+
 const Routes = require('./Routes');
 
 //criando o servidor
@@ -17,6 +19,8 @@ mongoose.connect('mongodb+srv://omnistack:omnistack@omnistack90-sh3ds.mongodb.ne
 app.use(express.json());
 //usa as rotas definidas no 'arquivo routes.js'
 app.use(Routes);
+
+Routes.post('/sessions', SessionController.store);
 
 
 //a aplicação será executada na porta 3333

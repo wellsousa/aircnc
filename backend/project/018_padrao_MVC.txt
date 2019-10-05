@@ -1,0 +1,21 @@
+
+
+É possivel implementar padroes de projeto em uma aplicação node.js.
+Um pattern Project é basicamente uma forma de organizar o código.
+A medida que as aplicações crescem pode ser bem complexa a manutenção, correção de bugs
+se o código não estiver bem organizado.
+
+O modelo MVC consiste em uma divisão de código e tarefas em Model, View e Controller.
+
+Model - contém o Schema de uma entidade de banco de dados.
+
+Controller - contém os metodos que tratam as requisições de uma área especifica da aplicação.
+
+View - é a camada de apresentação de uma respota a uma requisição. É aquilo que
+será mostrado ao usuário.
+
+Nesse projeto, dentro da pasta 'src', criamos também a pasta 'Controllers' e 'Models'. Não será criada uma pasta 'Views'
+porque essa camada pertence agora a front-end já que dividimos nossa aplicação em duas partes.
+Desse modo, todos os controllers da aplicação ficaram dentro da pasta 'Controllers' e todos os models da 
+aplicação ficaram dentro da pasta 'Models'. O conceito controllers, nesse primeiro momento, é onde implmentaremos
+a idéia de regra de negocios.

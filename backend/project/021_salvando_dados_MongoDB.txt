@@ -1,0 +1,81 @@
+//index, show, store, update, destroy
+
+
+/*
+    O código abaixo exemplifica como salvar dados no MongoDB.
+
+
+*/
+
+/*
+    importando o Modelo User
+*/
+const User = require('../Models/User');
+
+module.exports = {
+
+    /*
+        A palavra reservada async determina que essa função seja assincrona.
+    */
+    async store(req, res){
+        /*
+            recuperando o valor do campo 'email' na requisição post, normalmente, enviado
+            por um formulário.
+        */
+        const email = req.body.email;
+        
+        /*
+            o comando 'await' define que o código javascript não continue executando até
+            essa linha não seja inteiramente processada. Isso é necessário porque salvar dados
+            no banco gasta um tempo e continuar a execução poderia resultar em comportamentos não desejados
+            da aplicação. Sempre que o 'await' for utilizado você deve definir também que
+            essa função seja assincrona com a palavra reserva 'async'.
+        */
+
+        /*
+            procura no banco de dados o email informado. 
+        */
+        let user = await User.findOne({ email });
+
+        /*
+            se não existir cria um novo usuario.
+        */
+        if(! user){
+            user = await User.create({ email });
+        }
+
+        return res.json(user);
+    }
+}
+
+//=======================================================================
+
+EXEMPLO DE DADOS GRAVADOS NO MongoDB
+
+{
+  "_id": "5d9911c6490662735f4447d2",
+  "email": "diego@rocketseat.com.br",
+  "__v": 0
+}
+
+
+- O ID é um id único que MongoDB gera de forma automatica dentro do banco.
+
+- O __v é um contador de versão do dado. Cada vez que o dado é atualizado o contador
+é incrementado de forma automatica.
+//======================================================================
+
+REQUISIÇÃO SINCRONA
+
+Quando uma requisição é enviada, o processo remetente é bloqueado até 
+que ocorra uma resposta, ou seja, não é possível enviar novas 
+requisições até que nossa requisição atual seja finalizada, 
+existe sincronismo entre as requisições. Em requisições sincronas, quando
+uma requisição é feita, só continuamos com as demais tarefas quando recebermos
+uma resposta.
+
+REQUISIÇAO ASSINCRONA 
+
+Em uma requisição assíncrona, não existe sincronismo entre as requisições, 
+sendo assim, podemos enviar diversas requisições em paralelo, onde cada 
+resposta retorna quando estiver pronta.

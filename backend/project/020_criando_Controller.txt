@@ -1,0 +1,81 @@
+
+O controller, num primeiro momento, é onde implementamos a regra de negócio
+da aplicação. O objetivo do controller é receber a requisição endereçada pela rota 
+e então tratar essa requisção, ou seja, aplicar todas as regras de negócio necessárias 
+e devolver uma respota que geralmente vai para uma View.
+
+Você pode criar vários metodos dentro de um controller mas o mais comuns por padrão
+do MVC são: index, show, store, update, destroy que implementam um CRUD completo.
+
+EXEMPLO DE CÓDIGO DO CONTROLLER:
+
+//index, show, store, update, destroy
+
+module.exports = {
+    /*
+        retorna uma listagem de objetos.
+    */
+    index(req, res){
+
+    }
+
+    /*
+        retorna apenas um objeto.
+    */
+    show(req, res){
+
+    }
+
+    /*
+        cria um objeto no banco.
+    */
+    store(req, res){
+        return res.json({message: 'hello world'});
+    }
+
+    /*
+        atualizar um objeto
+    */
+    update(req, res){
+
+    }
+
+    /*
+        apagar um objeto do banco.
+    */
+    destroy(req, res){
+
+    }
+}
+
+
+EXEMPLO DE CHAMADA DO CONTROLLER DENTRO DO ARQUIVO PRINCIPAL:
+
+
+const express = require('express');
+const mongoose = require('mongoose');
+const SessionController = require('./Controllers/SessionController');
+
+const Routes = require('./Routes');
+
+//criando o servidor
+const app = express();
+
+mongoose.connect('mongodb+srv://omnistack:omnistack@omnistack90-sh3ds.mongodb.net/aircnc?retryWrites=true&w=majority', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
+
+/*
+    Informa ao node que estamos trabalhando com dados prioritariamente no formato json.
+*/
+app.use(express.json());
+//usa as rotas definidas no 'arquivo routes.js'
+app.use(Routes);
+
+//chamada do metodo store dentro de SessionController
+Routes.post('/users', SessionController.store);
+
+
+//a aplicação será executada na porta 3333
+app.listen(3333);

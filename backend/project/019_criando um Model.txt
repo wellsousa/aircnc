@@ -1,0 +1,20 @@
+Um model contém todo o Schema de uma entidade na base de dados.
+
+
+//EXEMPLO DE CÓDIGO
+
+//importando a biblioteca mongoose
+const mongoose = require('mongoose');
+
+/*
+    Criando um Schema com tipos primitivos do javascript para armazenar 
+    dentro do MongoDB. Você armazenar também arrays e objetos.
+*/
+const UserSchema = new mongoose.Schema({
+    email: String,
+    name: String,
+    age: Number,
+    active: Boolean
+});
+
+module.exports = mongoose.model('User', UserSchema);
