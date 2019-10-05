@@ -1,0 +1,58 @@
+
+Mesmo utilizando a api express, é uma boa pratica de programação vocẽ não
+criar todas as rotas da aplicação dentro do arquivo principal de inicialização
+do servidor 'server.js'. O ideal é vocẽ criar um arquivo especifico para conter
+todas as rotas que pode se chamar 'routes.js' e então importar esse arquivo dentro
+do arquivo princial 'server.js'.
+
+//----------------------------------------------------------------------
+EXEMPLO DE ARQUIVO DE ROTAS:
+
+
+const express = require('express');
+
+/*
+    Objeto responsável pelo roteamento dento do express
+*/
+const routes = express.Router();
+
+routes.post('/users', (req, res) => {
+    return res.json(req.body);
+});
+
+module.exports = routes;
+
+EXEMPLO DE CHAMADA DESSE ARQUIVO DENTRO DO ARQUIVO PRINCIPAL 'server.js':
+
+
+
+//DICA: use 'const' para variaveis que não alterarção o seu valor
+
+//importando a bliblioteca express
+const express = require('express');
+
+/*
+    importando o arquivo de rotas. É importante usar o caminho relativo './'
+    para que a aplicação entenda que se desja carregar um arquivo da
+    aplicação e não uma dependencia ou biblioteca node_module.
+*/
+const routes = require('./routes');
+
+//criando o servidor
+const app = express();
+
+/*
+    Informa ao node que estamos trabalhando com dados prioritariamente no formato json.
+*/
+app.use(express.json());
+app.use(routes);
+
+
+//a aplicação será executada na porta 3333
+app.listen(3333);
+
+//-------------------------------------------------------------------
+
+
+Para acessar arquivos que estão na mesma pasta você usa './nome-do-arquivo'. 
+Para voltar um diretorio você usa '../'.

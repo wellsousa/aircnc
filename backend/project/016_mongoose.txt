@@ -1,0 +1,76 @@
+
+O Mongoose é uma biblioteca para facilar o trabalho com bancos de dados dentro do node.js.
+
+Para instalar o Mongoose use o comando:
+
+yarn add Mongoose
+
+OU 
+
+npm install mongoose
+
+//------------------------------------------------------------------------
+
+EXEMPLO DE IMPORTAÇÃO DA BIBLIOTECA MONGOOSE:
+
+
+const express = require('express');
+//importando a bilioteca mongoose
+const mongoose = require('mongoose');
+const Routes = require('./Routes');
+
+//criando o servidor
+const app = express();
+
+/*
+    fazendo a conexão com o banco de dados, o modelo da string de conexão é assim:
+
+    mongodb+srv://omnistack:<password>@omnistack90-sh3ds.mongodb.net/admin?retryWrites=true&w=majority
+
+    você deve substituir <password> pela senha definida na criação do cluster no MongoDB Atlas.
+
+    você deve substitur 'admin' pelo nome da base de dados. Nesse exemplo a base de dados se chama 'aircnc'.
+*/
+mongoose.connect('mongodb+srv://omnistack:omnistack@omnistack90-sh3ds.mongodb.net/aircnc?retryWrites=true&w=majority', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
+
+/*
+    Informa ao node que estamos trabalhando com dados prioritariamente no formato json.
+*/
+app.use(express.json());
+//usa as rotas definidas no 'arquivo routes.js'
+app.use(Routes);
+
+//========================================================================
+
+POSSIVEIS ERROS
+
+- Versão do driver do node.js. Pode ser que a versao 3.0 de algum erro então, nesse caso,
+troque para a versao 2.2. Troque também a url de acesso.
+
+- usuario e/ou senha incorretos com valores diferentes no momento da criação do servidor de banco de dados.
+
+- Erro na definição de 'Network Acess'.
+
+- Erro de proxy que não deixa você acessa a porto do mongo que é 27017. Para saber se você está por trás de um proxy entre no site:
+
+portquiz.net:27017
+
+Se tudo estiver ok. Você receberá uma mensagem como essa:
+
+Outgoing port tester
+This server listens on all TCP ports, allowing you to test any outbound TCP port.
+You have reached this page on port 27017.
+Your network allows you to use this port. (Assuming that your network is not doing advanced traffic filtering.)
+Network service: unknown
+Your outgoing IP: 185.12.21.45
+
+
+
+
+
+
+//a aplicação será executada na porta 3333
+app.listen(3333);

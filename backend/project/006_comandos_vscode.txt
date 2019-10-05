@@ -2,3 +2,5 @@
 
 CTRL + SHIFT + P ==> Abre a lista de preferências do vscode.
 
+CTRL + D ==> Para editar várias ocorrencias de uma palavra.
+

@@ -1,0 +1,26 @@
+
+route params é um tipo de parametro que compoe a rota da requisção. Normalmente,
+é utilizada para requisições onde você deseja atualizar(PUT) ou mesmo apagar(DELETE) informações.
+
+
+
+exemplo de rota:
+
+http://localhost:3333/users/1
+
+exemplo de código:
+
+const express = require('express');
+
+const app = express();
+
+/*
+    considerando a rota acima, a resposta será o id passado como parametro
+    pela url.
+
+    você utiliza o objeto params dentro de req para acessar os parametros passados 
+    pela rota.
+*/
+app.put('users/:id',(req, res) => {
+    return res.json({user: req.params.id});
+});

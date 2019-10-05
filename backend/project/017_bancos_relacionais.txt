@@ -1,0 +1,3 @@
+É possivel usar bancos de dados relacionais com aplicações node.
+
+Procurar por sequelize.

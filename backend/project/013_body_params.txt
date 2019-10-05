@@ -1,0 +1,26 @@
+
+utilizado para capturar um conjunto de informação passados do cliente para
+o servidor. Pode ser utilizado para requisições do tipo POST(CRIAR)  ou mesmo PUT(ATUALIZAR).
+
+EXEMPLO DE SITUAÇÃO:
+
+Você deseja passar um conjunto de informações para o servidor em formato JSON.
+
+{
+    "nome": "wellington de sousa",
+    "email": "meuemail@gmail.com",
+    "idade": 31,
+    "cidade": "Belo Horizonte"
+}
+
+EXEMPLO DE CÓDIGO:
+
+const express = require('express');
+
+const app = express();
+
+app.use(express.json());
+
+app.post('/users', (req, res) => {
+    return res.json(req.body);
+});

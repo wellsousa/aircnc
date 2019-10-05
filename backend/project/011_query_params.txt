@@ -1,0 +1,25 @@
+
+Os query params são parametros que são colocados na propria url. Normalmente,
+esse tipo de parametro é usado em requisiçõs do tipo GET.
+
+EXEMPLO DE URL COM PARAMETROS: 
+
+http://localhost:3333/user?idade=20
+
+
+
+EXEMPLO DE CÓDIGO:
+
+const express = require('express');
+
+const app = express();
+
+/*
+    acessando os query params
+*/
+app.get('users/', (req, res) => {
+    return res.json(idade: req.query.idade);
+});
+
+
+

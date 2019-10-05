@@ -1,0 +1,49 @@
+
+
+Existem vários tipos de requisições http, mas, os principais são GET, POST, PUT e DELETE.
+A partir desses métodos você consegue criar um CRUD(CREATE, READ, UPDATE, DELETE).
+
+Você consegue fazer todos os tipos de requisições apenas com as bibliotecas padrões do node. 
+Porém, o express é como um micro-framework que facilita bastante essa parte e reduz bastante
+a quantidade de codigo gerado para essas tarefas básicas.
+
+Abaixo um exemplo de criação dos quatro tipos básicos de requisições com o express:
+
+const express = require('express');
+
+const app = express();
+
+/*
+    requisicoes do tipo GET buscam dados do servidor e apresentam para o cliente.
+*/
+app.get('/home', (req, res) => {
+    return res.json({message: 'pagina inicial'});
+});
+
+/*
+    requisicoes do tipo POST normalmente são para enviar dados do cliente para
+    o servidor, por exemplo, quando se envia um formulario de cadastro com dados
+    para se gravar no banco.
+*/
+
+app.post('/users', (req, res) => {
+    return res.json(req.body);
+});
+
+
+/*
+    O código abaixo atualizaria os dados de um usuario identificado pelo id que é passado
+    como um parametro através da pópria URL; 
+*/
+app.put('/users/:id', (req, res) => {
+    return res.json({message: req.params.id});
+});
+
+/*
+    O código abaixo demonstra uma requisição delete para apagar o usuario identificado pelo id que é passado
+    como parametro através da pŕopria URL;
+
+*/
+app.delete('/users/:id', (req, res) => {
+    return res.json({message: req.params.id});
+});

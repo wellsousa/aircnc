@@ -1,0 +1,30 @@
+
+
+É um banco de dados não relacional extremamente performático.
+Ele permite uma desenvolvimento bam dinamico e rapido de uma aplicação mas
+existem casos onde bancos de dados relacionais podem ser uma solução melhor.
+
+O MongoDB oferece um serviço de hospedagem de dados gratuito de até 500MB de dados.
+
+Para usar o serviço de nuvem você precisa criar uma conta no site MongoDB Atlas.
+
+Após criar o banco de dados siga os passos: 
+
+- Em 'Database Acess' crie um novo usuario e nunca use o usuario já existente 'admin' nas aplicações
+pois ele pode alterar praticamente tudo dentro do seu servidor de banco de dados.
+Verifique se a senha digitada confere com o que você realmente quer clicando em 'show'. Se informar
+uma senha errada você não conseguirá se conectar ao banco.
+
+Para esse exemplo criamos:
+
+usuario: omnistack
+senha: omnistack
+
+
+- Em 'Network Acess' libere o acesso desse servidor a algum IP. Nunca use o seu próprio
+IP, pois, se voce tentar acessar da sua casa não conseguirá; Use 'ALLOW ACESS FROM ANYWHERE' se
+vocẽ não tiver um IP fixo ou uma hospedagem paga.
+
+- Em 'Clusters' clique em 'connect' e ecolha a opção 'connect your application'. Em driver escolha
+a opção 'Node.js' e na versão escolha '3.0 or later'. Se tiver algum erro posterior pode ser em 
+função da versao então volte a este passo e escolha a versão '2.2'. Copie a string de conexao.
