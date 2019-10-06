@@ -1,0 +1,30 @@
+
+COMPONENTIZAÇÃO DE INTERFACES
+
+A componentização permite a reutilização de código. Imagine que você possui
+um formulario de newsletter que é usado em várias paginas diferentes mas em todas
+possui o mesmo comportamento. Então, você cria um componente para esse formulario
+e o aplica a todas as paginas. Se algum dia for necessário alterar alguma funcionalidade
+desse componente você irá fazer a alteração e ela será aplicada em todas as páginas.
+
+Em React a componentização é inteiramente feita através de códigos javascript atraves
+de funçoes e uma pseudo-html chamado de jsx.
+
+
+FUNCIONAMENTO DO REACT
+
+Em um sistema baseado em componentização todos os elementos de tela são componentes.
+E cada componente é um conjunto isolado de código html, css e javascript que realiza uma tarefa.
+
+O React para web funciona com a união de duas libs: o 'react' e o 'react-dom'.
+
+A lib 'react' é como o core de aplicação react contendo todas as definições fundamentais
+para a construção de interfaces;
+
+Já a lib 'react-dom' possui todas definições e metodos para implementação de interfaces web
+baseadas no modelo de paginas html com DOM(Document Object Model).
+
+De modo similar, para a plataforma mobile temos a lib react-native que contém todas as definições
+e metodos para implemntação de interfaces mobile.
+
+E ainda existe a lib rect-vr para realidade virtual e outras.

@@ -1,0 +1,17 @@
+
+OBJETIVO: Apagar arquivos desnecessários.
+
+public:
+    favicon
+    logos
+    manifest.json
+    robots.txt
+
+src:
+    logos
+    index.css
+    App.test.js
+    serviceWorker.js
+
+    OBS: voce devera apagar as referencias a index.css e logo.svg em seus respectivos arquivos
+    para a aplicação possa compilar.

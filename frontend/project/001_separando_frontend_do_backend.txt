@@ -1,0 +1,11 @@
+
+No principio, as aplicações constuídas no padrão MVC eram criadas amarrando
+o backend ao frontend, por exemplo, com o framework laravel vocẽ tem 
+funcionalides espeficas para criar e manipular views.
+
+Porque isolar o backend do frontend?
+
+Isolando o backend do frontend você pode ter vários frontends diferentes para
+um mesmo backend. Em resumo, isso evita retrabalho porque ao amarrar backend e frontend
+você terá que fazer diferente projeto para cada plataforma em que a aplicação
+rodará: web, mobile, desktop.

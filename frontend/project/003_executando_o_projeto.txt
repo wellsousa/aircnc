@@ -1,0 +1,22 @@
+
+
+- execute o backend, por exemplo, no diretorio '/var/www/html/aircnc/backend'. 
+O backend deverá rodar durante todo o desenvolvimento da aplicação frontend.
+
+yarn dev
+
+OU 
+
+npm run dev 
+
+- execute o comando para start o servidor do frontend, por exemplo, no diretorio
+/var/www/html/aircnc/frontend:
+
+yarn start
+
+OU 
+
+npm start 
+
+A aplicação será iniciada na porta 3000 por padrão e carregada no browser definido como padrão no sistema.
+
