@@ -53,7 +53,7 @@ module.exports = {
 EXEMPLO DE DADOS GRAVADOS NO MongoDB
 
 {
-  "_id": "5d9911c6490662735f4447d2",
+  "_id": "5d9911c6490662735f4447d2",  //mongoose.Schema.Types.ObjectId
   "email": "diego@rocketseat.com.br",
   "__v": 0
 }

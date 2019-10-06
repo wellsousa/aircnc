@@ -1,0 +1,232 @@
+
+
+O formato JSON não suporta upload de arquivos como imagens, documentos, etc.
+Desse modo, para fazer um upload voce deve usar outro formato como, por exemplo,
+Multipart Form.
+
+Para manipular esses tipos de arquivos precisaremos de uma lib chamada MULTER.
+
+Para instalar a lib MULTER use o comando:
+
+yarn add multer 
+
+OU 
+
+npm install multer 
+
+O multer precisa ser configurado. Crie uma pasta chamada 'Libraries' na pasta 'backend'.
+
+- Crie um arquivo para definirmos as configurações de upload. O arquivo
+pode se chamar por exemplo 'upload.js'.
+
+//========================================================================
+
+EXEMPLO DE CÓDIGO DE CONFIGURAÇÃO DO MULTER PARA UPLOAD DE arquivos
+
+const multer = require('multer');
+const path = require('path');
+
+module.exports = {
+    /*
+        O multer pode salvar em varios locais.
+        
+        diskStorage - será salvo no disco.
+
+        Você precisará configurar duas variaves:
+
+        destination - onde o arquivo será salvo.
+
+        filname - como o nome do arquivo será gerado.
+    */
+    storage: multer.diskStorage({
+
+        /*
+            cada sistema operacional tem um tipo de endereçamento e roteamento
+            de pastas, por isso, utilizando 'path.resolve()' o node automaticamente
+            identifca qual S.O está sendo utilizado e coloca o separador correto.
+
+            '__dirname' é uma variavel global que retorna o caminho para o diretorio atual desse arquivo, no caso, 'Libraries'.
+
+            '..' indicam o retorno de nivel na arvore de diretorios a partir do arquivo
+            onde está função está sendo chamada, no caso, 'Libraries'.
+
+            O ultimo parametro é o nome do diretorio onde os arquivos serão salvos.
+            Nesse exemplo, o diretório se chama 'uploads'.
+        */
+        destination: path.resolve(__dirname,'..', '..','uploads'),
+
+        /*
+            a composição do nome do arquivo é manipulada por uma função que recebe 3 parametros:
+
+            - req                   -> requisição
+            - file                  -> arquivo
+            - afterFileNameResolved -> É uma função que é chamada assim que o nome do arquivo tiver sido 
+                                    capturado pela aplicação.
+
+        */
+        filename: (req, file, afterFileNameResolved) =>{
+
+            const ext = path.extname(file.originalname);
+            const name = path.basename(file.originalname, ext);
+
+            /*
+                Essa função recebe 2 parametros:
+
+                - null -> É uma trativa de erro. Poderia ser uma mensagem ou mesmo uma
+                        função de callback para uma manipulação mais elaborado do erro.
+
+                - fileName -> Seria a formação do nome do arquivo propriamente dito. O nome 
+                            é formado por:
+
+                            - O nome original do arquivo sem a extensao
+                            - a data atual em segundos desde 1980
+                            - a extensao
+
+                            A composição dessas tres variaveis forma um nome unico para o arquivo
+                            na pasta 'uploads'. O nome é formado a partir de template strings passadas
+                            como parametros dentro de ${}.
+
+                            Você não precisa colocar um '.' para a extensao pois ele já estará dentro da 
+                            variavel 'ext'
+            */
+            afterFileNameResolved(null, `${name}_${Date.now()}${ext}`);
+        }
+    }),
+};
+
+//=======================================================================
+
+CHAMANDO O ARQUIVO 'upload.js' DENTRO DO ARQUIVO PRINCIPAL 'server.js'.
+
+const express = require('express');
+const mongoose = require('mongoose');
+
+/*
+    Importando o module 'multer' e a library 'uploadLib'
+*/
+const multer = require('multer');
+const uploadLib = require('./Libraries/upload');
+const SessionController = require('./Controllers/SessionController');
+const SpotController = require('./Controllers/SpotController');
+
+const Routes = require('./Routes');
+
+/*
+    criando uma instancia de multer com as configurações personalizadas de upload de 
+    arquivos para o nosso projeto definadas em 'upload.js'
+*/
+const upload = multer(uploadLib);
+
+const app = express();
+
+mongoose.connect('mongodb+srv://omnistack:omnistack@omnistack90-sh3ds.mongodb.net/aircnc?retryWrites=true&w=majority', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
+
+
+app.use(express.json());
+
+app.use(Routes);
+
+Routes.post('/sessions', SessionController.store);
+
+/*
+    informando ao multer qual o nome do campo que contém o arquivo.
+
+    single() -> indica o carregamento de um unico arquivo
+    array() -> indica o carregamento de varios arquivos simultaneos.
+*/
+Routes.post('/spots', upload.single('thumbnail'), SpotController.store);
+
+
+app.listen(3333);
+
+//=========================================================================
+
+EXEMPLO DE DADOS ENVIADOS ATRAVES DA REQUISICAO
+
+
+[Object: null prototype] {
+  company: 'rocketseat',
+  techonlogies: 'Javascript, React, React Native, NodeJs',
+  price: '68' }
+{ fieldname: 'thumbnail',
+  originalname: 'libra_no_dhoko.jpg',
+  encoding: '7bit',
+  mimetype: 'image/jpeg',
+  destination: '/var/www/html/aircnc/backend/uploads',
+  filename: 'libra_no_dhoko-1570324603955.jpg',
+  path:
+   '/var/www/html/aircnc/backend/uploads/libra_no_dhoko-1570324603955.jpg',
+  size: 142840 }
+
+  //=====================================================================
+
+  SALVANDO OS DADOS NO mongodb
+
+
+const User = require('../Models/User');
+const Spot = require('../Models/Spot');
+
+module.exports = {
+
+    async store(req, res){
+        /*
+            você pode ver o conteudo das requisições ao dar um 
+            console.log() no body.
+
+            console.log(req.body);
+            console.log(req.file);
+        */
+
+        /*
+            const {filename} = req.file;
+        */
+        const filename = req.file.filename;
+
+        /*
+            const {company, technologies, price} = req.body;
+        */
+        const company = req.body.company;
+        const technologies = req.body.technologies;
+        const price = req.body.price;
+
+        /*
+            const {user_id} = req.headers;
+        */
+        const user_id = req.headers.user_id;
+
+        const user = await User.findById(user_id);
+
+        if (! user){
+            return res.status(400).json({error: "User does not exists."});
+        }
+
+        const spot = await Spot.create({
+            user: user_id,
+            thumbnail: filename,
+            company,
+            technologies: technologies.split(',').map(technologies => technologies.trim()),
+            price
+        });
+
+        return res.json(spot);
+    }
+}
+//======================================================================
+
+EXEMPLO DE ESTRUTURA SALVA NO mongoDB 
+
+id:5d99511ee6e4790eb44253eb
+technologies:
+Array
+0:"Javascript"
+1:"React"
+2:"React Native"
+3:"NodeJs"
+user:5d9911b9490662735f4447d0
+thumbnail:"libra_no_dhoko_1570328862658.jpg"
+company:"rocketseat"
+price:68
+__v:0
