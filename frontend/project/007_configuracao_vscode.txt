@@ -1,0 +1,23 @@
+
+- use CTRL + SHIFT + P para habilitar o modo de definição de confgurações. 
+
+- Escolha a opção "Preferences: Open Settings(JSON)".
+
+- Adicione as seguintes configurações:
+
+{
+    "workbench.colorTheme": "Quiet Light",
+
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": true,
+
+    "emmet.syntaxProfiles": {
+        "javascript": "jsx",
+    },
+
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact"
+    }
+}
+
+Essas configurações permitem que o jsx do react possa usar auto-complete.

@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+/*
+  limpar estilizações padroes definidas por browsers.
+*/
+
+*{
+  margin: 0;
+  padding: 0;
+  outline: 0; //contornos de caixa e conteudos como uma margem
+  box-sizing: border-box; //
+}
+
+/*
+    define que as as tres tags que são utilizadas em praticamente todas as paginas
+    tenham altura minima igual a toda a altura disponivel no browser.
+*/
+html, body, #root{
+  min-height: 100%;
+}
+
+/*
+    - cor do background preta.
+    - importa uma imagem com plano de fundo. A imagem não se repete.
+*/
+body{
+  background: #000000 url('./assets/background.jpg') no-repeat;
+  background-size: cover; //a imagem cobre toda a area disponivel no browser
+  -webkit-font-smoothing: antialiased !important; //torna a fonte mais nitida
+}
+
+/*
+    Por padrao input e button não herdam fontes customizadas definas em body.
+    Por isso, deve-se fazer a definição de forma explicita.
+*/
+body, input, button{
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}

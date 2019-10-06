@@ -1,0 +1,11 @@
+
+
+Axios é uma biblioteca para trabalhar com ApiREST e requisições AJAX.
+
+Para instalar no projeto use comando:
+
+yar add axios 
+
+OU 
+
+npm install axios

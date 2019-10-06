@@ -1,0 +1,9 @@
+
+COMANDO
+
+ALT + SETA PARA CIMA troca a linha de código pela linha imediatamente acima.
+A seta para baixa tem efeito análogo.
+
+EXTENSAO
+
+color highlight
