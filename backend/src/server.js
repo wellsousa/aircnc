@@ -6,6 +6,7 @@ const uploadLib = require('./Libraries/upload');
 const SessionController = require('./Controllers/SessionController');
 const SpotController = require('./Controllers/SpotController');
 const DashboardController = require('./Controllers/DashboardController');
+const BookingController = require('./Controllers/BookingController');
 
 const Routes = require('./Routes');
 const upload = multer(uploadLib);
@@ -31,6 +32,8 @@ Routes.get('/spots', SpotController.index);
 Routes.post('/spots', upload.single('thumbnail'), SpotController.store);
 
 Routes.get('/dashboard', DashboardController.index);
+
+Routes.post('/spots/:spot_id/bookings', BookingController.store);
 
 
 
